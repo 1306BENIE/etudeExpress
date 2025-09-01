@@ -1,35 +1,44 @@
-# 🚀 EtudeExpress - Plateforme d'Études de Marché IA
+# 🚀 Entrepreneur Assistant CI - Plateforme de Business Plan IA
 
-Une plateforme intelligente pour générer des études de marché adaptées au contexte africain, alimentée par l'IA.
+Une plateforme web intelligente et évolutive qui modernise le processus d'étude commerciale en Côte d'Ivoire. Elle offre aux entrepreneurs un outil interactif permettant de créer, structurer et exporter leur business plan de manière professionnelle.
 
 ## ✨ Fonctionnalités
 
-- 🤖 **Génération d'études de marché par IA** - Obtenez des analyses complètes en quelques minutes
-- 💬 **Assistant IA intelligent** - Chatbot spécialisé dans les études de marché
-- 📊 **Analyses détaillées** - Données fiables et projections financières
-- 🌍 **Adapté à l'Afrique** - Conçu pour le contexte économique africain
-- 📱 **Interface moderne** - Design responsive et intuitif
-- 🔒 **Sécurisé** - Authentification JWT et protection des données
+- 📋 **Formulaires dynamiques** - 12 pages basées sur le support officiel
+- 🤖 **Assistant IA contextualisé** - Guide intelligent pour chaque étape
+- 📊 **Tableaux financiers interactifs** - Visualisations et projections
+- 📄 **Export PDF professionnel** - Business plan structuré et présentable
+- 👥 **Mode collaboratif** - Inviter mentor, investisseur, incubateur
+- 🏢 **Module Admin avancé** - Supervision et gestion des utilisateurs
+- 📱 **Interface responsive** - Mobile, tablette, ordinateur
+- 🔒 **Sécurisé** - Authentification JWT et gestion des rôles
 
 ## 🛠️ Technologies
 
 ### Backend
 
-- **Node.js** + **Express.js** - API REST
+- **Node.js** + **Express.js** - API REST sécurisée
 - **TypeScript** - Typage statique
-- **MongoDB** + **Mongoose** - Base de données
+- **MongoDB** + **Mongoose** - Base de données flexible
 - **OpenAI API** - Intelligence artificielle
-- **JWT** - Authentification
-- **Tailwind CSS** - Styling
+- **JWT** - Authentification et RBAC
+- **PDF-lib** - Génération de documents
 
 ### Frontend
 
-- **React 18** + **TypeScript** - Interface utilisateur
+- **React 18** + **TypeScript** - Interface moderne
 - **Vite** - Build tool rapide
-- **Tailwind CSS** - Framework CSS
-- **Framer Motion** - Animations
+- **Tailwind CSS** - Framework CSS responsive
+- **Framer Motion** - Animations fluides
 - **React Hook Form** - Gestion des formulaires
-- **React Router** - Navigation
+- **Chart.js/Recharts** - Visualisations
+
+## 🎯 Public Cible
+
+- **Entrepreneurs** débutants et confirmés
+- **Étudiants** en entrepreneuriat
+- **Incubateurs** et investisseurs
+- **Institutions** d'accompagnement (CCI, ONG, Ministères)
 
 ## 🚀 Installation
 
@@ -50,62 +59,34 @@ cd project-bolt-sb1-y4grvz5e/project
 
 ```bash
 cd backend-etudeExpress
-
-# Installer les dépendances
 npm install
-
-# Créer le fichier .env
 cp .env.example .env
-
-# Configurer les variables d'environnement dans .env
-OPENAI_API_KEY=votre_clé_api_openai
-JWT_SECRET=votre_secret_jwt
-MONGODB_URI=mongodb://localhost:27017/etudeexpress
+# Configurer les variables d'environnement
 ```
 
 ### 3. Configuration Frontend
 
 ```bash
 cd ../frontend-etudeExpress
-
-# Installer les dépendances
 npm install
-
-# Créer le fichier .env (optionnel)
-VITE_API_URL=http://localhost:5000/api
 ```
 
 ## 🏃‍♂️ Démarrage
 
-### Option 1: Script automatique
-
 ```bash
-# Depuis la racine du projet
+# Script automatique
 powershell -ExecutionPolicy Bypass -File start-dev.ps1
-```
 
-### Option 2: Démarrage manuel
-
-#### Backend
-
-```bash
-cd backend-etudeExpress
-npm run dev
-```
-
-#### Frontend (nouveau terminal)
-
-```bash
-cd frontend-etudeExpress
-npm run dev
+# Ou manuellement
+cd backend-etudeExpress && npm run dev
+cd frontend-etudeExpress && npm run dev
 ```
 
 ## 🌐 URLs
 
 - **Frontend**: http://localhost:3000
 - **Backend**: http://localhost:5000
-- **API**: http://localhost:5000/api
-- **Health Check**: http://localhost:5000/health
+- **Admin**: http://localhost:3000/admin
 
 ## 📚 API Endpoints
 
@@ -115,37 +96,24 @@ npm run dev
 - `POST /api/auth/login` - Connexion
 - `GET /api/auth/me` - Profil utilisateur
 
-### Études
+### Business Plan
 
-- `POST /api/studies` - Créer une étude
-- `GET /api/studies` - Lister les études
-- `GET /api/studies/:id` - Détails d'une étude
-- `DELETE /api/studies/:id` - Supprimer une étude
+- `POST /api/business-plans` - Créer un business plan
+- `GET /api/business-plans` - Lister les projets
+- `GET /api/business-plans/:id` - Détails d'un projet
+- `PUT /api/business-plans/:id` - Modifier un projet
+- `DELETE /api/business-plans/:id` - Supprimer un projet
 
-### Chat
+### Export
 
-- `POST /api/chat` - Envoyer un message
-- `GET /api/chat` - Historique des conversations
+- `POST /api/export/pdf/:id` - Générer PDF
+- `POST /api/export/word/:id` - Générer Word
 
-## 🔧 Scripts NPM
+### Administration
 
-### Backend
-
-```bash
-npm run dev      # Démarrage en mode développement
-npm run build    # Compilation TypeScript
-npm run start    # Démarrage en production
-npm run lint     # Vérification du code
-```
-
-### Frontend
-
-```bash
-npm run dev      # Démarrage en mode développement
-npm run build    # Build de production
-npm run preview  # Prévisualisation du build
-npm run lint     # Vérification du code
-```
+- `GET /api/admin/users` - Gestion utilisateurs
+- `GET /api/admin/statistics` - Statistiques
+- `GET /api/admin/projects` - Supervision projets
 
 ## 🎯 Structure du Projet
 
@@ -170,47 +138,10 @@ project/
 └── README.md
 ```
 
-## 🚨 Dépannage
-
-### Erreur "Cannot find module 'uuid'"
-
-```bash
-cd backend-etudeExpress
-npm install uuid @types/uuid
-```
-
-### Erreur de connexion MongoDB
-
-- Vérifiez que MongoDB est démarré
-- Vérifiez l'URI dans le fichier .env
-
-### Erreur OpenAI API
-
-- Vérifiez votre clé API dans le fichier .env
-- Vérifiez les quotas de votre compte OpenAI
-
-## 🤝 Contribution
-
-1. Fork le projet
-2. Créez une branche feature (`git checkout -b feature/AmazingFeature`)
-3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrez une Pull Request
-
 ## 📄 Licence
 
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-## 📞 Support
-
-Pour toute question ou problème :
-
-- Ouvrez une issue sur GitHub
-- Contactez l'équipe de développement
+Ce projet est sous licence MIT.
 
 ---
 
-**Développé avec ❤️ pour l'écosystème entrepreneurial africain**
-
-
-
+**Développé avec ❤️ pour l'écosystème entrepreneurial ivoirien**

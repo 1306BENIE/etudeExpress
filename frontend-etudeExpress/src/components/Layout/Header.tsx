@@ -19,6 +19,7 @@ import {
   Twitter,
 } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
+import { IMAGES } from "../../config/images";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,9 +35,9 @@ const Header: React.FC = () => {
 
   const navItems = [
     { name: "Accueil", path: "/" },
+    { name: "Créer mon BP", path: "/business-plan" },
     { name: "Tarifs", path: "/pricing" },
     { name: "Contact", path: "/contact" },
-    { name: "Intelligence Marché", path: "/chatbot" },
   ];
 
   return (
@@ -108,7 +109,7 @@ const Header: React.FC = () => {
                 to="/about"
                 className="text-[#F27F20] hover:text-white font-bold transition-colors duration-200 text-xs md:text-sm px-3 md:px-4 py-1 md:py-2 rounded-lg hover:bg-[#F27F20]/10"
               >
-                CONNAÎTRE ETUDEEXPRESS
+                CONNAÎTRE BUSINESS PLAN PRO
               </Link>
             </div>
           </div>
@@ -116,25 +117,16 @@ const Header: React.FC = () => {
       </div>
 
       {/* Main navigation */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-[#FBE3DA] border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-18 lg:h-20">
             {/* Logo - Style institutionnel - Responsive */}
-            <Link
-              to="/"
-              className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 group"
-            >
-              <div className="p-2 sm:p-2.5 lg:p-3 bg-gradient-to-br from-[#751F20] to-[#1A473B] rounded-lg lg:rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-lg">
-                <Building2 className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-[#751F20] leading-tight">
-                  EtudeExpress
-                </span>
-                <span className="text-xs text-gray-600 font-medium hidden sm:block">
-                  ASSISTANT DIGITAL INTELLIGENT
-                </span>
-              </div>
+            <Link to="/" className="group">
+              <img
+                src={IMAGES.logo}
+                alt="Logo Chambre de Commerce de Côte d'Ivoire"
+                className="w-28 h-14 sm:w-32 sm:h-16 lg:w-40 lg:h-20 object-contain group-hover:scale-105 transition-transform duration-300"
+              />
             </Link>
 
             {/* Desktop Navigation - Style CCI-CI */}

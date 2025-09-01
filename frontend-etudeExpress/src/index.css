@@ -44,11 +44,29 @@
     @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
   }
 
+  /* Gradient CCI (Orange vers Vert) */
   .gradient-bg {
-    background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #22c55e 100%);
   }
 
   .text-gradient {
     @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  /* Styles spécifiques CCI */
+  .cci-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full bg-primary-100 text-primary-700 text-sm font-medium;
+  }
+
+  .cci-card {
+    @apply bg-white rounded-xl shadow-lg border border-gray-100 p-6 transition-all duration-300 hover:shadow-xl hover:border-primary-200;
+  }
+
+  .cci-button {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .cci-button-outline {
+    @apply bg-white hover:bg-gray-50 text-primary-600 font-medium px-6 py-3 rounded-lg border border-primary-200 transition-all duration-200 shadow-md hover:shadow-lg hover:border-primary-300;
   }
 }
