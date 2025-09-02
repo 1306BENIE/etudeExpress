@@ -107,7 +107,7 @@ const Header: React.FC = () => {
             <div className="flex items-center">
               <Link
                 to="/about"
-                className="text-[#F27F20] hover:text-white font-bold transition-colors duration-200 text-xs md:text-sm px-3 md:px-4 py-1 md:py-2 rounded-lg hover:bg-[#F27F20]/10"
+                className="text-white hover:text-[#f2f0ee] font-bold transition-colors duration-200 text-xs md:text-sm px-3 md:px-4 py-1 md:py-2 rounded-lg hover:text-[#f2f0ee9a]"
               >
                 CONNAÎTRE BUSINESS PLAN PRO
               </Link>

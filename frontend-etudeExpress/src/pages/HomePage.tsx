@@ -95,11 +95,11 @@ const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#FBE3DA]">
+      <section className="relative overflow-visible bg-[#FBE3DA]">
         {/* Pattern de fond subtil */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f97316%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-0 lg:pt-32">
           {/* Titre principal centré */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -108,14 +108,13 @@ const HomePage: React.FC = () => {
             className="text-center mb-16"
           >
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Créez votre{" "}
-              <span className="text-primary-600">Business Plan</span>{" "}
+              Créez votre <span className="text-[#751F20]">Business Plan</span>{" "}
               professionnel
             </h1>
           </motion.div>
 
           {/* Contenu principal */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -127,7 +126,7 @@ const HomePage: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-xl text-gray-600 leading-relaxed"
+                  className="text-xl text-gray-600 leading-relaxed text-justify"
                 >
                   Entrepreneur Assistant CI vous accompagne dans la création de
                   votre business plan selon les standards de la Chambre de
@@ -143,7 +142,10 @@ const HomePage: React.FC = () => {
                 className="flex justify-center lg:justify-start"
               >
                 <Link to="/register">
-                  <Button size="lg" className="w-full sm:w-auto bg-[#751F20]">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto !bg-[#751F20] hover:!bg-[#5a1618]"
+                  >
                     Commencer mon business plan
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
@@ -155,11 +157,11 @@ const HomePage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8"
+                className="grid grid-cols-2 gap-6 pt-8"
               >
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-2xl lg:text-3xl font-bold text-primary-600">
+                    <div className="text-2xl lg:text-3xl font-bold text-[#751F20]">
                       {stat.number}
                     </div>
                     <div className="text-sm text-gray-600">{stat.label}</div>
@@ -185,147 +187,256 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Section Fonctionnalités */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-[#751F20]/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#751F20]/3 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Titre et description avec style particulier */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Tout ce dont vous avez besoin pour réussir
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <div className="relative inline-block">
+              <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#751F20] via-[#8B2635] to-[#751F20] bg-clip-text text-transparent mb-6 leading-tight">
+                Tout ce dont vous avez besoin
+                <br />
+                <span className="text-3xl lg:text-4xl">pour réussir</span>
+              </h2>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-[#751F20] to-[#8B2635] rounded-full"></div>
+            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-xl text-gray-600 max-w-3xl mx-auto mt-8 leading-relaxed font-medium"
+            >
               Un outil complet qui vous guide étape par étape dans la création
               de votre business plan professionnel.
-            </p>
+            </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-primary-100 rounded-lg flex items-center justify-center mb-6">
-                  <div className="text-primary-600">{feature.icon}</div>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+          {/* Carte principale "waouh" */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-100 relative overflow-hidden"
+          >
+            {/* Gradient overlay */}
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#751F20] via-[#8B2635] to-[#751F20]"></div>
+
+            {/* 3 cartes de fonctionnalités */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {features.slice(0, 3).map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+                  viewport={{ once: true }}
+                  className="group relative"
+                >
+                  <div className="flex items-start space-x-4 p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#751F20]/20 transition-all duration-300 hover:shadow-lg h-full">
+                    {/* Icône */}
+                    <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-[#751F20] to-[#8B2635] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-white">{feature.icon}</div>
+                    </div>
+
+                    {/* Contenu */}
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#751F20] transition-colors duration-300">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Effet de brillance au survol */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform -skew-x-12 -translate-x-full group-hover:translate-x-full pointer-events-none"></div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Section Témoignages */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gradient-to-br from-[#FBE3DA] via-white to-[#FBE3DA] relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-20 w-64 h-64 bg-[#751F20]/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-20 w-48 h-48 bg-[#8B2635]/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#751F20]/3 to-[#8B2635]/3 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Titre avec style particulier */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Ils ont réussi avec Entrepreneur Assistant CI
-            </h2>
-            <p className="text-xl text-gray-600">
-              Découvrez les témoignages de nos utilisateurs satisfaits
-            </p>
+            <div className="relative inline-block">
+              <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#751F20] via-[#8B2635] to-[#751F20] bg-clip-text text-transparent mb-6 leading-tight">
+                Ce que disent nos
+                <br />
+                <span className="text-3xl lg:text-4xl">entrepreneurs</span>
+              </h2>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-[#751F20] to-[#8B2635] rounded-full"></div>
+            </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gray-50 rounded-xl p-8"
-              >
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 text-yellow-400 fill-current"
-                    />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic">
-                  "{testimonial.content}"
-                </p>
-                <div className="flex items-center">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4"
-                  />
-                  <div>
-                    <div className="font-semibold text-gray-900">
-                      {testimonial.name}
+          {/* Conteneur principal des témoignages */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.4 + index * 0.15 }}
+                  viewport={{ once: true }}
+                  className="group relative"
+                >
+                  {/* Carte de témoignage */}
+                  <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden h-full flex flex-col">
+                    {/* Gradient top border */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#751F20] via-[#8B2635] to-[#751F20]"></div>
+
+                    {/* Quote icon */}
+                    <div className="absolute top-6 right-6 w-12 h-12 bg-gradient-to-br from-[#751F20]/10 to-[#8B2635]/10 rounded-full flex items-center justify-center">
+                      <div className="text-2xl text-[#751F20] font-serif">
+                        "
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-600">
-                      {testimonial.role}
+
+                    {/* Étoiles */}
+                    <div className="flex items-center mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-5 h-5 text-[#751F20] fill-current mr-1"
+                        />
+                      ))}
                     </div>
+
+                    {/* Contenu du témoignage */}
+                    <blockquote className="text-gray-700 mb-8 text-lg leading-relaxed font-medium italic flex-grow">
+                      "{testimonial.content}"
+                    </blockquote>
+
+                    {/* Profil de l'utilisateur */}
+                    <div className="flex items-center mt-auto">
+                      <div className="relative">
+                        <img
+                          src={testimonial.avatar}
+                          alt={testimonial.name}
+                          className="w-16 h-16 rounded-full border-4 border-white shadow-lg"
+                        />
+                      </div>
+                      <div className="ml-4">
+                        <div className="font-bold text-gray-900 text-lg">
+                          {testimonial.name}
+                        </div>
+                        <div className="text-[#751F20] font-medium text-sm">
+                          {testimonial.role}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Effet de brillance au survol */}
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 transform -skew-x-12 -translate-x-full group-hover:translate-x-full pointer-events-none"></div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+
+                  {/* Ombre décorative */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#751F20]/5 to-[#8B2635]/5 transform translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300"></div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Section CTA */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-secondary-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-br from-[#751F20] via-[#8B2635] to-[#751F20] relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-12"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Prêt à créer votre business plan ?
-            </h2>
-            <p className="text-xl text-primary-100 max-w-2xl mx-auto">
+            {/* Titre principal */}
+            <div className="relative inline-block">
+              <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                Prêt à <span className="text-[#FBE3DA]">transformer</span>
+                <br />
+                votre idée en réalité ?
+              </h2>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-[#FBE3DA] to-white rounded-full"></div>
+            </div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed font-medium"
+            >
               Rejoignez des centaines d'entrepreneurs qui ont déjà réussi avec
               Entrepreneur Assistant CI
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/register">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="w-full sm:w-auto"
-                >
-                  Commencer gratuitement
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-              <Link to="/contact">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary-600"
-                >
-                  Nous contacter
-                </Button>
-              </Link>
-            </div>
+            </motion.p>
+
+            {/* Conteneur principal des boutons */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div>
+                <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
+                  <Link to="/register" className="w-full lg:w-auto">
+                    <Button
+                      size="lg"
+                      className="w-full lg:w-auto !bg-white !text-[#751F20] hover:!bg-[#FBE3DA] hover:!text-[#751F20] font-bold text-lg px-8 py-4 shadow-xl"
+                    >
+                      Commencer gratuitement
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
