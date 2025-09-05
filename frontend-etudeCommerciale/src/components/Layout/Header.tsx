@@ -9,8 +9,6 @@ import {
   LogOut,
   Settings,
   BarChart3,
-  Building2,
-  Globe,
   Phone,
   Mail,
   Facebook,
@@ -34,10 +32,9 @@ const Header: React.FC = () => {
   };
 
   const navItems = [
-    { name: "Accueil", path: "/" },
-    { name: "Créer mon BP", path: "/business-plan" },
-    { name: "Tarifs", path: "/pricing" },
-    { name: "Contact", path: "/contact" },
+    { name: "Présentation", path: "/about" },
+    { name: "Créer mon Business Plan", path: "/business-plan" },
+    { name: "Contactez-nous", path: "/contact" },
   ];
 
   return (
@@ -63,25 +60,25 @@ const Header: React.FC = () => {
               <div className="hidden lg:flex items-center space-x-4">
                 <a
                   href="#"
-                  className="text-white hover:text-[#F27F20] transition-colors duration-200 p-1.5 rounded-lg hover:bg-white/10"
+                  className="text-white hover:text-[#e9e2e2] transition-colors duration-200 p-1.5 rounded-lg hover:bg-white/10"
                 >
                   <Facebook className="w-4 h-4" />
                 </a>
                 <a
                   href="#"
-                  className="text-white hover:text-[#F27F20] transition-colors duration-200 p-1.5 rounded-lg hover:bg-white/10"
+                  className="text-white hover:text-[#e9e2e2] transition-colors duration-200 p-1.5 rounded-lg hover:bg-white/10"
                 >
                   <Linkedin className="w-4 h-4" />
                 </a>
                 <a
                   href="#"
-                  className="text-white hover:text-[#F27F20] transition-colors duration-200 p-1.5 rounded-lg hover:bg-white/10"
+                  className="text-white hover:text-[#e9e2e2] transition-colors duration-200 p-1.5 rounded-lg hover:bg-white/10"
                 >
                   <Youtube className="w-4 h-4" />
                 </a>
                 <a
                   href="#"
-                  className="text-white hover:text-[#F27F20] transition-colors duration-200 p-1.5 rounded-lg hover:bg-white/10"
+                  className="text-white hover:text-[#e9e2e2] transition-colors duration-200 p-1.5 rounded-lg hover:bg-white/10"
                 >
                   <Twitter className="w-4 h-4" />
                 </a>
@@ -105,12 +102,9 @@ const Header: React.FC = () => {
 
             {/* About Link - Tablet & Desktop */}
             <div className="flex items-center">
-              <Link
-                to="/about"
-                className="text-white hover:text-[#f2f0ee] font-bold transition-colors duration-200 text-xs md:text-sm px-3 md:px-4 py-1 md:py-2 rounded-lg hover:text-[#f2f0ee9a]"
-              >
-                CONNAÎTRE BUSINESS PLAN PRO
-              </Link>
+              <span className="text-white hover:text-[#f2f0ee] font-bold transition-colors duration-200 text-xs md:text-sm px-3 md:px-4 py-1 md:py-2 rounded-lg hover:text-[#f2f0ee9a]">
+                Simplifiez vos études commerciales
+              </span>
             </div>
           </div>
         </div>
@@ -158,7 +152,7 @@ const Header: React.FC = () => {
                     <span className="absolute -bottom-1 left-0 w-0 h-1 bg-gradient-to-r from-[#751F20] to-[#1A473B] group-hover:w-full transition-all duration-500 ease-out rounded-full shadow-lg" />
 
                     {/* Top accent line */}
-                    <span className="absolute -top-1 left-0 w-0 h-0.5 bg-[#F27F20] group-hover:w-full transition-all duration-700 ease-out rounded-full delay-100" />
+                    <span className="absolute -top-1 left-0 w-0 h-0.5 bg-[#e9e2e2] group-hover:w-full transition-all duration-700 ease-out rounded-full delay-100" />
 
                     {/* Subtle glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#751F20]/20 to-[#1A473B]/20 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-150" />

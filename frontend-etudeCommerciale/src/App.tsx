@@ -8,6 +8,7 @@ import DashboardPage from "./pages/DashboardPage";
 import BusinessPlanPage from "./pages/BusinessPlanPage";
 import StudyResultsPage from "./pages/StudyResultsPage";
 import PricingPage from "./pages/PricingPage";
+import FeaturesPage from "./pages/FeaturesPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/features" element={<FeaturesPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />

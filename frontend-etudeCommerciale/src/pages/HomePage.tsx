@@ -253,7 +253,9 @@ const HomePage: React.FC = () => {
                   <div className="flex flex-col sm:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-4 p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#751F20]/20 transition-all duration-300 hover:shadow-lg h-full">
                     {/* Icône */}
                     <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#751F20] to-[#8B2635] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 mx-auto sm:mx-0">
-                      <div className="text-white text-sm sm:text-base">{feature.icon}</div>
+                      <div className="text-white text-sm sm:text-base">
+                        {feature.icon}
+                      </div>
                     </div>
 
                     {/* Contenu */}
@@ -436,11 +438,9 @@ const HomePage: React.FC = () => {
                       className="w-full sm:w-auto !bg-white !text-[#751F20] hover:!bg-[#FBE3DA] hover:!text-[#751F20] font-bold text-xs xs:text-sm sm:text-lg px-3 xs:px-4 sm:px-8 py-3 sm:py-4 shadow-xl whitespace-nowrap"
                     >
                       <span className="hidden xs:inline">
-                        Commencer gratuitement
+                        Commencer maintenant
                       </span>
-                      <span className="xs:hidden">
-                        Commencer gratuitement
-                      </span>
+                      <span className="xs:hidden">Commencer maintenant</span>
                       <ArrowRight className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 ml-1 xs:ml-2" />
                     </Button>
                   </Link>
