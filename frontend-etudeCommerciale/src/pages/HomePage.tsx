@@ -94,7 +94,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+      {/* HeroSection  */}
       <section className="relative overflow-visible bg-[#FBE3DA]">
         {/* Pattern de fond subtil */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f97316%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
@@ -139,15 +139,20 @@ const HomePage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="flex justify-center lg:justify-start"
+                className="flex justify-center lg:justify-start px-4 sm:px-0"
               >
-                <Link to="/register">
+                <Link to="/register" className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto !bg-[#751F20] hover:!bg-[#5a1618]"
+                    className="w-full sm:w-auto !bg-[#751F20] hover:!bg-[#5a1618] text-xs xs:text-sm sm:text-base px-3 xs:px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap"
                   >
-                    Commencer mon business plan
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    <span className="hidden xs:inline">
+                      Commencer mon business plan
+                    </span>
+                    <span className="xs:hidden">
+                      Commencer mon business plan
+                    </span>
+                    <ArrowRight className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 ml-1 xs:ml-2" />
                   </Button>
                 </Link>
               </motion.div>
@@ -223,19 +228,19 @@ const HomePage: React.FC = () => {
             </motion.p>
           </motion.div>
 
-          {/* Carte principale "waouh" */}
+          {/* Carte principale */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-100 relative overflow-hidden"
+            className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl border border-gray-100 relative overflow-hidden mx-2 sm:mx-0"
           >
             {/* Gradient overlay */}
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#751F20] via-[#8B2635] to-[#751F20]"></div>
 
             {/* 3 cartes de fonctionnalités */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {features.slice(0, 3).map((feature, index) => (
                 <motion.div
                   key={index}
@@ -245,15 +250,15 @@ const HomePage: React.FC = () => {
                   viewport={{ once: true }}
                   className="group relative"
                 >
-                  <div className="flex items-start space-x-4 p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#751F20]/20 transition-all duration-300 hover:shadow-lg h-full">
+                  <div className="flex flex-col sm:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-4 p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#751F20]/20 transition-all duration-300 hover:shadow-lg h-full">
                     {/* Icône */}
-                    <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-[#751F20] to-[#8B2635] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <div className="text-white">{feature.icon}</div>
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#751F20] to-[#8B2635] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 mx-auto sm:mx-0">
+                      <div className="text-white text-sm sm:text-base">{feature.icon}</div>
                     </div>
 
                     {/* Contenu */}
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#751F20] transition-colors duration-300">
+                    <div className="flex-1 text-center sm:text-left">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-[#751F20] transition-colors duration-300">
                         {feature.title}
                       </h3>
                       <p className="text-gray-600 leading-relaxed text-sm">
@@ -424,14 +429,19 @@ const HomePage: React.FC = () => {
               className="relative"
             >
               <div>
-                <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
-                  <Link to="/register" className="w-full lg:w-auto">
+                <div className="flex flex-col lg:flex-row gap-6 justify-center items-center px-4 sm:px-0">
+                  <Link to="/register" className="w-full sm:w-auto">
                     <Button
                       size="lg"
-                      className="w-full lg:w-auto !bg-white !text-[#751F20] hover:!bg-[#FBE3DA] hover:!text-[#751F20] font-bold text-lg px-8 py-4 shadow-xl"
+                      className="w-full sm:w-auto !bg-white !text-[#751F20] hover:!bg-[#FBE3DA] hover:!text-[#751F20] font-bold text-xs xs:text-sm sm:text-lg px-3 xs:px-4 sm:px-8 py-3 sm:py-4 shadow-xl whitespace-nowrap"
                     >
-                      Commencer gratuitement
-                      <ArrowRight className="w-5 h-5 ml-2" />
+                      <span className="hidden xs:inline">
+                        Commencer gratuitement
+                      </span>
+                      <span className="xs:hidden">
+                        Commencer gratuitement
+                      </span>
+                      <ArrowRight className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 ml-1 xs:ml-2" />
                     </Button>
                   </Link>
                 </div>
