@@ -3,7 +3,10 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  userType: 'entrepreneur' | 'student' | 'investor';
+  userType: 'entrepreneur' | 'student' | 'investor' | 'incubator' | 'institution' | 'mentor';
+  sector?: string;
+  location?: string;
+  experience?: 'beginner' | 'intermediate' | 'advanced';
   avatar?: string;
   createdAt: string;
   subscription?: {
@@ -22,7 +25,10 @@ export interface RegisterData {
   lastName: string;
   email: string;
   password: string;
-  userType: 'entrepreneur' | 'student' | 'investor';
+  userType: 'entrepreneur' | 'student' | 'investor' | 'incubator' | 'institution' | 'mentor';
+  sector?: string;
+  location?: string;
+  experience?: 'beginner' | 'intermediate' | 'advanced';
 }
 
 export interface AuthResponse {

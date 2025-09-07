@@ -1,23 +1,16 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authService } from '../services/authService';
-import { User } from '../types/auth';
+import { User, RegisterData as AuthRegisterData } from '../types/auth';
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (userData: RegisterData) => Promise<void>;
+  register: (userData: AuthRegisterData) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
 }
 
-interface RegisterData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  userType: 'entrepreneur' | 'student' | 'investor';
-}
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -61,7 +54,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setUser(userData);
   };
 
-  const register = async (userData: RegisterData) => {
+  const register = async (userData: AuthRegisterData) => {
     const { user: newUser, token } = await authService.register(userData);
     localStorage.setItem('authToken', token);
     setUser(newUser);
