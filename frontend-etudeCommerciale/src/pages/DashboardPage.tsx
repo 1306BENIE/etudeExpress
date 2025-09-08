@@ -83,7 +83,7 @@ const DashboardPage: React.FC = () => {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <StatsCard
               key={stat.title}
               title={stat.title}
@@ -156,7 +156,7 @@ const DashboardPage: React.FC = () => {
             </div>
           ) : (
             <div className="space-y-4">
-              {studies.slice(0, 5).map((study, index) => (
+              {studies.slice(0, 5).map((study) => (
                 <StudyCard
                   key={study.id}
                   study={study}

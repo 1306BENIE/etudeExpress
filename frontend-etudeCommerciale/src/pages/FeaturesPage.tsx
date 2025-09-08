@@ -7,7 +7,6 @@ import {
   BarChart3,
   Users,
   Shield,
-  Clock,
   CheckCircle,
   ArrowRight,
 } from "lucide-react";

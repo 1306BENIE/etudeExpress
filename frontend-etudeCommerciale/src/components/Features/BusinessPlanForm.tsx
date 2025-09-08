@@ -141,14 +141,8 @@ const BusinessPlanForm: React.FC<BusinessPlanFormProps> = ({
             value={value || ""}
             onChange={(e) => handleFieldChange(field.id, e.target.value)}
             required={field.required}
-          >
-            <option value="">Sélectionnez...</option>
-            {field.options?.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </Select>
+            options={field.options || []}
+          />
         );
 
       default:

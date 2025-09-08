@@ -1,36 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ChevronLeft,
-  ChevronRight,
   Save,
   Download,
-  Share2,
   HelpCircle,
   CheckCircle,
-  Circle,
   Users,
   BarChart3,
   FileText,
-  Settings,
-  Lightbulb,
-  AlertTriangle,
   TrendingUp,
   Calendar,
   Target,
-  BookOpen,
   FileCheck,
   Presentation,
-  Plus,
-  Trash2,
   ArrowLeft,
   ArrowRight,
+  Lightbulb,
 } from "lucide-react";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import Textarea from "../components/UI/Textarea";
-import Select from "../components/UI/Select";
 import Modal from "../components/UI/Modal";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import { useAuth } from "../contexts/AuthContext";
@@ -221,9 +211,9 @@ const PAGES_CONFIG = [
 ];
 
 const BusinessPlanPage: React.FC = () => {
-  const { user } = useAuth();
+  const { } = useAuth();
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
+  const { } = useParams<{ id: string }>();
 
   // États locaux
   const [currentPage, setCurrentPage] = useState(1);
@@ -456,7 +446,7 @@ const BusinessPlanPage: React.FC = () => {
   };
 
   // Assistant IA
-  const askAssistant = async (question: string) => {
+  const askAssistant = async () => {
     setShowAssistant(true);
     setAssistantMessage("L'assistant IA analyse votre question...");
 
@@ -877,7 +867,7 @@ const BusinessPlanPage: React.FC = () => {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => askAssistant("Aide pour cette page")}
+                onClick={() => askAssistant()}
                 disabled={isLoading}
                 className="border-[#751F20]/30 text-[#751F20] hover:bg-[#751F20]/10"
               >

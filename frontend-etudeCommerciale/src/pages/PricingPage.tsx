@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check, Star, Zap, Crown } from 'lucide-react';
+import { Check, Star, Zap, Crown, X } from 'lucide-react';
 import Button from '../components/UI/Button';
 
 const PricingPage: React.FC = () => {

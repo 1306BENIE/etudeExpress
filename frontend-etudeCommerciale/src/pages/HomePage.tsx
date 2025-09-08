@@ -7,13 +7,9 @@ import {
   Users,
   TrendingUp,
   Shield,
-  CheckCircle,
   ArrowRight,
-  Play,
   Star,
-  Award,
   Globe,
-  Target,
 } from "lucide-react";
 import Button from "../components/UI/Button";
 import { IMAGES } from "../config/images";

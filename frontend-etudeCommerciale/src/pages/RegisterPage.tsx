@@ -9,12 +9,6 @@ import {
   Eye,
   EyeOff,
   TrendingUp,
-  Building2,
-  GraduationCap,
-  DollarSign,
-  Users,
-  Landmark,
-  UserCheck,
   ChevronDown,
   Briefcase,
 } from "lucide-react";
@@ -108,43 +102,11 @@ const RegisterPage: React.FC = () => {
     {
       value: "mentor",
       label: "Mentor/Conseiller",
-      icon: <TrendingUp className="w-5 h-5" />,
+      icon: <Briefcase className="w-5 h-5" />,
     },
   ];
 
-  const sectors = [
-    "Agriculture et Agroalimentaire",
-    "Artisanat et Métiers d'Art",
-    "Commerce et Distribution",
-    "Construction et BTP",
-    "Éducation et Formation",
-    "Énergie et Environnement",
-    "Finance et Assurance",
-    "Industrie et Manufacturing",
-    "Numérique et Technologies",
-    "Santé et Bien-être",
-    "Services aux Entreprises",
-    "Tourisme et Hôtellerie",
-    "Transport et Logistique",
-    "Autre",
-  ];
 
-  const locations = [
-    "Abidjan",
-    "Bouaké",
-    "Bondoukou",
-    "Daloa",
-    "Korhogo",
-    "San-Pédro",
-    "Yamoussoukro",
-    "Man",
-    "Divo",
-    "Gagnoa",
-    "Abengourou",
-    "Grand-Bassam",
-    "Sassandra",
-    "Autre",
-  ];
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-br from-[#FBE3DA] via-white to-[#FBE3DA]">

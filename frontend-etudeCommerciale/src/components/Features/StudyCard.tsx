@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { FileText, Calendar, MapPin, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react';
 import { Study } from '../../types/study';
 import { formatDate, formatCurrency } from '../../utils/validation';

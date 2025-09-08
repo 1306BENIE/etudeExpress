@@ -1,15 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
-  Target, 
   Users, 
-  Globe, 
-  Award,
-  TrendingUp,
   Heart,
   Lightbulb,
-  Shield
+  Shield,
+  Award
 } from 'lucide-react';
+import Button from '../components/UI/Button';
 
 const AboutPage: React.FC = () => {
   const values = [

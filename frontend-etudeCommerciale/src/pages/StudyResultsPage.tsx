@@ -13,11 +13,10 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import toast from 'react-hot-toast';
 import { useStudy } from '../contexts/StudyContext';
 import { Study } from '../types/study';
-import { formatCurrency, formatDate } from '../utils/validation';
+import { formatCurrency } from '../utils/validation';
 import Button from '../components/UI/Button';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import Card from '../components/UI/Card';
-import Badge from '../components/UI/Badge';
 import ExportOptions from '../components/Features/ExportOptions';
 
 const StudyResultsPage: React.FC = () => {
@@ -265,7 +264,7 @@ const StudyResultsPage: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {study.financialProjections.slice(0, 3).map((projection, index) => (
+                {study.financialProjections.slice(0, 3).map((projection) => (
                   <div key={projection.year} className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-medium text-gray-900 mb-2">Année {projection.year}</h4>
                     <div className="space-y-1 text-sm">

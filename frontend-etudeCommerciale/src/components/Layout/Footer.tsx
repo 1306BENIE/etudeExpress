@@ -8,7 +8,6 @@ import {
   Linkedin,
   Youtube,
 } from "lucide-react";
-import { IMAGES } from "../../config/images";
 
 const Footer: React.FC = () => {
   return (

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import {
@@ -9,7 +8,6 @@ import {
   Clock,
   Send,
   MessageSquare,
-  TrendingUp,
   User,
   Building2,
   FileText,
@@ -37,7 +35,7 @@ const ContactPage: React.FC = () => {
     formState: { errors },
   } = useForm<ContactFormData>();
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async () => {
     setIsLoading(true);
     try {
       // Simulate API call
