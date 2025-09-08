@@ -8,8 +8,8 @@ export const IMAGES = {
 
   // Témoignages
   testimonials: {
-    avatar1: "/images/testimonials/avatar-1.jpg",
-    avatar2: "/images/testimonials/avatar-2.jpg",
-    avatar3: "/images/testimonials/avatar-3.jpg",
+    avatar1: "/images/testimonials/test-1.jpeg",
+    avatar2: "/images/testimonials/test-2.jpeg",
+    avatar3: "/images/testimonials/test-3.jpeg",
   },
 } as const;
