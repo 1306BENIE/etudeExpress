@@ -41,7 +41,7 @@
   }
 
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#751F20]/20 focus:border-[#751F20] transition-all duration-200;
   }
 
   /* Gradient CCI (Orange vers Vert) */

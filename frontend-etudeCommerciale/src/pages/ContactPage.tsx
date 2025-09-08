@@ -81,7 +81,7 @@ const ContactPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FBE3DA] via-white to-[#FBE3DA] pt-32 pb-8 lg:pt-40 lg:pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#FBE3DA] via-white to-[#FBE3DA] pt-10 pb-10 lg:pt-40 lg:pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10">
           {/* Contact Form */}
@@ -319,10 +319,10 @@ const ContactPage: React.FC = () => {
                   <Button
                     type="submit"
                     isLoading={isLoading}
-                    className="w-auto px-8 !bg-gradient-to-r from-[#751F20] to-[#8B2635] hover:from-[#5a1618] hover:to-[#6b1e2a] shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"
+                    className="w-auto px-4 sm:px-8 whitespace-nowrap !bg-gradient-to-r from-[#751F20] to-[#8B2635] hover:from-[#5a1618] hover:to-[#6b1e2a] shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"
                     size="lg"
                   >
-                    <Send className="w-5 h-5 mr-2" />
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Envoyer le message
                   </Button>
                 </motion.div>
@@ -335,7 +335,7 @@ const ContactPage: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full lg:w-80 lg:flex-shrink-0 space-y-3 sm:space-y-4"
+            className="hidden lg:block w-full lg:w-80 lg:flex-shrink-0 space-y-3 sm:space-y-4"
           >
             {/* Contact Cards */}
             <div className="space-y-3 sm:space-y-4">

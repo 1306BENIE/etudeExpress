@@ -28,14 +28,7 @@ function App() {
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route
-              path="/business-plan"
-              element={
-                <ProtectedRoute>
-                  <BusinessPlanPage />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/business-plan" element={<BusinessPlanPage />} />
             <Route
               path="/dashboard"
               element={

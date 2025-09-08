@@ -22,6 +22,10 @@ import {
   BookOpen,
   FileCheck,
   Presentation,
+  Plus,
+  Trash2,
+  ArrowLeft,
+  ArrowRight,
 } from "lucide-react";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
@@ -40,207 +44,179 @@ interface BusinessPlanData {
   localisation: string;
   statut: "brouillon" | "en_cours" | "termine" | "valide";
 
-  // Page 1: Présentation du projet
-  presentation: {
+  // Page 1: L'IDÉE (selon CCI)
+  idee: {
     nomProjet: string;
     description: string;
     problemeResolu: string;
     solutionProposee: string;
-    avantagesConcurrentiels: string[];
-  };
-
-  // Page 2: Analyse du marché
-  analyseMarche: {
-    marcheCible: string;
-    tailleMarche: number;
-    segments: string[];
-    comportementAchat: string;
-  };
-
-  // Page 3: Stratégie marketing
-  strategieMarketing: {
-    positionnement: string;
-    mixMarketing: {
-      produit: string;
-      prix: string;
-      place: string;
-      promotion: string;
-    };
-    planCommunication: string[];
-    canauxDistribution: string[];
-  };
-
-  // Page 4: Organisation et équipe
-  organisation: {
-    structure: string;
-    equipe: Array<{
+    proprietaires: Array<{
       nom: string;
-      poste: string;
-      competences: string[];
+      fonction: string;
       experience: string;
     }>;
-    besoinsRecrutement: string[];
   };
 
-  // Page 5: Plan opérationnel
-  planOperationnel: {
-    processusProduction: string;
-    fournisseurs: Array<{
+  // Page 2: LE MARCHÉ (4P Marketing CCI)
+  marche: {
+    produit: string; // Qu'allez-vous offrir comme produit ou service ?
+    prix: string; // À combien allez-vous vendre le produit ou service ?
+    fournitures: string; // Comment allez-vous vous approvisionner ?
+    promotion: string; // Comment allez-vous faire votre promotion ?
+    clients: number; // Combien aurez-vous de clients par mois ?
+    place: string; // Où allez-vous vous installer ?
+    concurrents: string; // Comment allez-vous vous comporter ?
+  };
+
+  // Page 3: RESSOURCES MATÉRIELLES ET HUMAINES (CCI)
+  ressources: {
+    equipements: string; // Comment allez-vous produire votre produit/service ?
+    machines: Array<{
       nom: string;
-      produit: string;
-      conditions: string;
-    }>;
-    equipements: string[];
-    locaux: string;
-    planning: string;
+      prix: number;
+      description: string;
+    }>; // Machines/équipements avec prix
+    enregistrement: string; // Procédures administratives à satisfaire
+    employes: {
+      nombre: number;
+      couts: number;
+      details: string;
+    }; // Nombre d'employés et coûts
   };
 
-  // Page 6: Analyse financière
-  analyseFinanciere: {
-    investissementInitial: number;
-    sourcesFinancement: Array<{
+  // Page 4: COÛTS PRÉ-DÉMARRAGE (CCI)
+  coutsPreDemarrage: {
+    constitution: number;
+    autorisationLicence: number;
+    formation: number;
+    informationsProjet: number;
+    planAffaires: number;
+    autres: Array<{
+      description: string;
+      montant: number;
+    }>;
+    total: number;
+  };
+
+  // Page 5: COÛT TOTAL ET FINANCEMENT (CCI)
+  coutTotalFinancement: {
+    depensesAvantDemarrage: number;
+    immobilisations: {
+      terrain: number;
+      construction: number;
+      materiel: number;
+      outillage: number;
+      vehicules: number;
+      total: number;
+    };
+    fondsRoulement3Mois: {
+      salaires: number;
+      prelevementEntrepreneur: number;
+      coutsMarketing: number;
+      matieresPremières: number;
+      total: number;
+    };
+    coutTotal: number;
+    apportPersonnel: number;
+    besoinFinancement: number;
+  };
+
+  // Page 6: PLAN DE FINANCEMENT (CCI)
+  planFinancement: {
+    apportPersonnel: number;
+    sourcesExternes: Array<{
       source: string;
       montant: number;
-      conditions: string;
     }>;
-    seuilRentabilite: number;
-    delaiRecuperation: number;
+    total: number;
   };
 
-  // Page 7: Plan de trésorerie
-  planTresorerie: {
-    fluxTresorerie: Array<{
+  // Page 7: PLAN DE REMBOURSEMENT (CCI)
+  planRemboursement: {
+    argentEmprunte: number; // A
+    dureeRemboursementMois: number; // B
+    remboursementMensuel: number; // C = A/B
+    interetMensuel: number; // D
+    paiementMensuelTotal: number; // E = C+D
+    montantTotalRembourser: number; // F = B*E
+  };
+
+  // Page 8: COMPTE DE RÉSULTAT PRÉVISIONNEL (CCI)
+  compteResultat: {
+    mois: Array<{
       mois: string;
-      encaissements: number;
-      decaissements: number;
-      solde: number;
+      totalVentes: number; // (1)
+      coutVentes: {
+        achatMatieresPremières: number;
+        autresCouts: number;
+        mainOeuvre: number;
+        total: number; // (2)
+      };
+      resultatBrut: number; // (1-2)
+      chargesFixes: {
+        loyer: number;
+        electricite: number;
+        eau: number;
+        telephone: number;
+        transport: number;
+        salaires: number;
+        autres: number;
+        total: number; // (3)
+      };
+      resultatNet: number; // (1-2-3)
     }>;
-    besoinsFondsRoulement: number;
   };
 
-  // Page 8: Analyse des risques
-  analyseRisques: {
-    risquesIdentifies: Array<{
-      risque: string;
-      probabilite: "faible" | "moyenne" | "elevee";
-      impact: "faible" | "moyen" | "eleve";
-      mesuresMitigation: string[];
-    }>;
-    planContingence: string;
-  };
-
-  // Page 9: Plan de développement
-  planDeveloppement: {
-    phases: Array<{
-      phase: string;
-      duree: string;
-      objectifs: string[];
-      ressources: string[];
-    }>;
-    objectifsLongTerme: string[];
-  };
-
-  // Page 10: Indicateurs de performance
-  indicateursPerformance: {
-    kpis: Array<{
-      nom: string;
-      description: string;
-      cible: number;
-      unite: string;
-    }>;
-    suiviPerformance: string;
-  };
-
-  // Page 11: Annexes
-  annexes: {
-    etudesMarche: string[];
-    contrats: string[];
-    devis: string[];
-    autres: string[];
-  };
-
-  // Page 12: Résumé exécutif
-  resumeExecutif: {
-    synthese: string;
-    pointsCles: string[];
-    recommandations: string[];
-    conclusion: string;
+  // Pages 9-12: Sections supplémentaires (à développer selon besoins)
+  sectionsSupplementaires: {
+    planDeveloppement?: string;
+    indicateursPerformance?: string;
+    annexes?: string[];
+    resumeExecutif?: string;
   };
 }
 
-// Configuration des pages du formulaire
+// Configuration des pages du formulaire (Structure CCI)
 const PAGES_CONFIG = [
   {
     id: 1,
-    title: "Présentation du projet",
-    icon: <Presentation className="w-5 h-5" />,
-    description: "Définissez votre projet et sa valeur ajoutée",
+    title: "L'Idée",
+    icon: <Lightbulb className="w-5 h-5" />,
   },
   {
     id: 2,
-    title: "Analyse du marché",
+    title: "Le Marché",
     icon: <BarChart3 className="w-5 h-5" />,
-    description: "Étudiez votre marché cible et la concurrence",
   },
   {
     id: 3,
-    title: "Stratégie marketing",
-    icon: <Target className="w-5 h-5" />,
-    description: "Définissez votre positionnement et mix marketing",
+    title: "Ressources Matérielles et Humaines",
+    icon: <Users className="w-5 h-5" />,
   },
   {
     id: 4,
-    title: "Organisation et équipe",
-    icon: <Users className="w-5 h-5" />,
-    description: "Structurez votre équipe et organisation",
+    title: "Coûts Pré-Démarrage",
+    icon: <FileText className="w-5 h-5" />,
   },
   {
     id: 5,
-    title: "Plan opérationnel",
-    icon: <Settings className="w-5 h-5" />,
-    description: "Détaillez vos processus et opérations",
+    title: "Coût Total et Financement",
+    icon: <TrendingUp className="w-5 h-5" />,
   },
   {
     id: 6,
-    title: "Analyse financière",
-    icon: <TrendingUp className="w-5 h-5" />,
-    description: "Présentez vos projections financières",
+    title: "Plan de Financement",
+    icon: <Target className="w-5 h-5" />,
   },
   {
     id: 7,
-    title: "Plan de trésorerie",
+    title: "Plan de Remboursement",
     icon: <Calendar className="w-5 h-5" />,
-    description: "Planifiez vos flux de trésorerie",
   },
   {
     id: 8,
-    title: "Analyse des risques",
-    icon: <AlertTriangle className="w-5 h-5" />,
-    description: "Identifiez et gérez les risques",
-  },
-  {
-    id: 9,
-    title: "Plan de développement",
-    icon: <Lightbulb className="w-5 h-5" />,
-    description: "Définissez votre stratégie de croissance",
-  },
-  {
-    id: 10,
-    title: "Indicateurs de performance",
-    icon: <Target className="w-5 h-5" />,
-    description: "Établissez vos KPIs et tableaux de bord",
-  },
-  {
-    id: 11,
-    title: "Annexes",
-    icon: <BookOpen className="w-5 h-5" />,
-    description: "Ajoutez vos documents supports",
-  },
-  {
-    id: 12,
-    title: "Résumé exécutif",
+    title: "Compte de Résultat Prévisionnel",
     icon: <FileCheck className="w-5 h-5" />,
-    description: "Synthétisez votre business plan",
   },
 ];
 
@@ -258,137 +234,192 @@ const BusinessPlanPage: React.FC = () => {
 
   // État du formulaire
   const [formData, setFormData] = useState<BusinessPlanData>({
+    id: "",
     titre: "",
     secteur: "",
     localisation: "",
     statut: "brouillon",
-    presentation: {
+
+    // Page 1: L'IDÉE (selon CCI)
+    idee: {
       nomProjet: "",
       description: "",
       problemeResolu: "",
       solutionProposee: "",
-      avantagesConcurrentiels: [""],
-    },
-    analyseMarche: {
-      marcheCible: "",
-      tailleMarche: 0,
-      segments: [""],
-      comportementAchat: "",
-    },
-    strategieMarketing: {
-      positionnement: "",
-      mixMarketing: {
-        produit: "",
-        prix: "",
-        place: "",
-        promotion: "",
-      },
-      planCommunication: [""],
-      canauxDistribution: [""],
-    },
-    organisation: {
-      structure: "",
-      equipe: [
+      proprietaires: [
         {
           nom: "",
-          poste: "",
-          competences: [""],
+          fonction: "",
           experience: "",
         },
       ],
-      besoinsRecrutement: [""],
     },
-    planOperationnel: {
-      processusProduction: "",
-      fournisseurs: [
+
+    // Page 2: LE MARCHÉ (4P Marketing CCI)
+    marche: {
+      produit: "",
+      prix: "",
+      fournitures: "",
+      promotion: "",
+      clients: 0,
+      place: "",
+      concurrents: "",
+    },
+
+    // Page 3: RESSOURCES MATÉRIELLES ET HUMAINES (CCI)
+    ressources: {
+      equipements: "",
+      machines: [
         {
           nom: "",
-          produit: "",
-          conditions: "",
+          prix: 0,
+          description: "",
         },
       ],
-      equipements: [""],
-      locaux: "",
-      planning: "",
+      enregistrement: "",
+      employes: {
+        nombre: 0,
+        couts: 0,
+        details: "",
+      },
     },
-    analyseFinanciere: {
-      investissementInitial: 0,
-      sourcesFinancement: [
+
+    // Page 4: COÛTS PRÉ-DÉMARRAGE (CCI)
+    coutsPreDemarrage: {
+      constitution: 0,
+      autorisationLicence: 0,
+      formation: 0,
+      informationsProjet: 0,
+      planAffaires: 0,
+      autres: [
+        {
+          description: "",
+          montant: 0,
+        },
+      ],
+      total: 0,
+    },
+
+    // Page 5: COÛT TOTAL ET FINANCEMENT (CCI)
+    coutTotalFinancement: {
+      depensesAvantDemarrage: 0,
+      immobilisations: {
+        terrain: 0,
+        construction: 0,
+        materiel: 0,
+        outillage: 0,
+        vehicules: 0,
+        total: 0,
+      },
+      fondsRoulement3Mois: {
+        salaires: 0,
+        prelevementEntrepreneur: 0,
+        coutsMarketing: 0,
+        matieresPremières: 0,
+        total: 0,
+      },
+      coutTotal: 0,
+      apportPersonnel: 0,
+      besoinFinancement: 0,
+    },
+
+    // Page 6: PLAN DE FINANCEMENT (CCI)
+    planFinancement: {
+      apportPersonnel: 0,
+      sourcesExternes: [
         {
           source: "",
           montant: 0,
-          conditions: "",
         },
       ],
-      seuilRentabilite: 0,
-      delaiRecuperation: 0,
+      total: 0,
     },
-    planTresorerie: {
-      fluxTresorerie: [
+
+    // Page 7: PLAN DE REMBOURSEMENT (CCI)
+    planRemboursement: {
+      argentEmprunte: 0,
+      dureeRemboursementMois: 0,
+      remboursementMensuel: 0,
+      interetMensuel: 0,
+      paiementMensuelTotal: 0,
+      montantTotalRembourser: 0,
+    },
+
+    // Page 8: COMPTE DE RÉSULTAT PRÉVISIONNEL (CCI)
+    compteResultat: {
+      mois: [
         {
-          mois: "",
-          encaissements: 0,
-          decaissements: 0,
-          solde: 0,
+          mois: "Janvier",
+          totalVentes: 0,
+          coutVentes: {
+            achatMatieresPremières: 0,
+            autresCouts: 0,
+            mainOeuvre: 0,
+            total: 0,
+          },
+          resultatBrut: 0,
+          chargesFixes: {
+            loyer: 0,
+            electricite: 0,
+            eau: 0,
+            telephone: 0,
+            transport: 0,
+            salaires: 0,
+            autres: 0,
+            total: 0,
+          },
+          resultatNet: 0,
         },
       ],
-      besoinsFondsRoulement: 0,
     },
-    analyseRisques: {
-      risquesIdentifies: [
-        {
-          risque: "",
-          probabilite: "faible",
-          impact: "faible",
-          mesuresMitigation: [""],
-        },
-      ],
-      planContingence: "",
-    },
-    planDeveloppement: {
-      phases: [
-        {
-          phase: "",
-          duree: "",
-          objectifs: [""],
-          ressources: [""],
-        },
-      ],
-      objectifsLongTerme: [""],
-    },
-    indicateursPerformance: {
-      kpis: [
-        {
-          nom: "",
-          description: "",
-          cible: 0,
-          unite: "",
-        },
-      ],
-      suiviPerformance: "",
-    },
-    annexes: {
-      etudesMarche: [""],
-      contrats: [""],
-      devis: [""],
-      autres: [""],
-    },
-    resumeExecutif: {
-      synthese: "",
-      pointsCles: [""],
-      recommandations: [""],
-      conclusion: "",
+
+    // Pages 9-12: Sections supplémentaires (à développer selon besoins)
+    sectionsSupplementaires: {
+      planDeveloppement: "",
+      indicateursPerformance: "",
+      annexes: [""],
+      resumeExecutif: "",
     },
   });
 
+  // Validation des pages
+  const isPageCompleted = (pageId: number) => {
+    switch (pageId) {
+      case 1: // L'Idée
+        return formData.idee.nomProjet && 
+               formData.idee.description && 
+               formData.idee.problemeResolu && 
+               formData.idee.solutionProposee &&
+               formData.idee.proprietaires.some(p => p.nom);
+      case 2: // Le Marché (4P)
+        return formData.marche.produit && 
+               formData.marche.prix && 
+               formData.marche.place &&
+               formData.marche.promotion &&
+               formData.marche.clients > 0;
+      case 3: // Ressources
+        return formData.ressources.equipements &&
+               formData.ressources.enregistrement &&
+               formData.ressources.employes.nombre >= 0;
+      case 4: // Coûts pré-démarrage
+        return formData.coutsPreDemarrage.total > 0;
+      case 5: // Coût total et financement
+        return formData.coutTotalFinancement.coutTotal > 0;
+      case 6: // Plan de financement
+        return formData.planFinancement.total > 0;
+      case 7: // Plan de remboursement
+        return formData.planRemboursement.argentEmprunte > 0;
+      case 8: // Compte de résultat
+        return formData.compteResultat.mois.some(m => m.totalVentes > 0);
+      default:
+        return false;
+    }
+  };
+
   // Calcul de la progression
   const calculateProgress = () => {
-    const totalFields = 12; // 12 pages
-    const completedPages = PAGES_CONFIG.filter((page) => {
-      // Logique pour déterminer si une page est complétée
-      return true; // Simplifié pour l'exemple
-    }).length;
-    return Math.round((completedPages / totalFields) * 100);
+    const completedPages = PAGES_CONFIG.filter((page) => isPageCompleted(page.id)).length;
+    return Math.round((completedPages / 12) * 100);
   };
 
   // Navigation entre les pages
@@ -468,118 +499,187 @@ const BusinessPlanPage: React.FC = () => {
             exit={{ opacity: 0, x: -50 }}
             className="space-y-6"
           >
-            <div className="bg-white rounded-lg p-6 shadow-sm border">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Présentation du projet
-              </h3>
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-xl border border-[#751F20]/10 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#751F20] via-[#8B2635] to-[#751F20]"></div>
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="p-3 bg-gradient-to-r from-[#751F20] to-[#8B2635] rounded-xl text-white">
+                  <Presentation className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#751F20] via-[#8B2635] to-[#751F20] bg-clip-text text-transparent">
+                    Présentation du projet
+                  </h3>
+                  <p className="text-gray-600 text-sm">Définissez les bases de votre projet entrepreneurial</p>
+                </div>
+              </div>
 
               <div className="space-y-4">
-                <Input
-                  label="Nom du projet"
-                  value={formData.presentation.nomProjet}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      presentation: {
-                        ...formData.presentation,
-                        nomProjet: e.target.value,
-                      },
-                    })
-                  }
-                  placeholder="Ex: Restaurant traditionnel ivoirien"
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                >
+                  <Input
+                    label="Nom du projet"
+                    value={formData.idee.nomProjet}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        idee: {
+                          ...formData.idee,
+                          nomProjet: e.target.value,
+                        },
+                      })
+                    }
+                    placeholder="Ex: Restaurant traditionnel ivoirien"
+                    className="focus:border-[#751F20] focus:ring-[#751F20]/20"
+                  />
+                </motion.div>
 
-                <Textarea
-                  label="Description du projet"
-                  value={formData.presentation.description}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      presentation: {
-                        ...formData.presentation,
-                        description: e.target.value,
-                      },
-                    })
-                  }
-                  placeholder="Décrivez votre projet en détail..."
-                  rows={4}
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <Textarea
+                    label="Description du projet"
+                    value={formData.idee.description}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        idee: {
+                          ...formData.idee,
+                          description: e.target.value,
+                        },
+                      })
+                    }
+                    placeholder="Décrivez votre projet en détail..."
+                    rows={4}
+                    className="focus:border-[#751F20] focus:ring-[#751F20]/20"
+                  />
+                </motion.div>
 
-                <Textarea
-                  label="Problème résolu"
-                  value={formData.presentation.problemeResolu}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      presentation: {
-                        ...formData.presentation,
-                        problemeResolu: e.target.value,
-                      },
-                    })
-                  }
-                  placeholder="Quel problème votre projet résout-il ?"
-                  rows={3}
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <Textarea
+                    label="Problème résolu"
+                    value={formData.idee.problemeResolu}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        idee: {
+                          ...formData.idee,
+                          problemeResolu: e.target.value,
+                        },
+                      })
+                    }
+                    placeholder="Quel problème votre projet résout-il ?"
+                    rows={3}
+                    className="focus:border-[#751F20] focus:ring-[#751F20]/20"
+                  />
+                </motion.div>
 
-                <Textarea
-                  label="Solution proposée"
-                  value={formData.presentation.solutionProposee}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      presentation: {
-                        ...formData.presentation,
-                        solutionProposee: e.target.value,
-                      },
-                    })
-                  }
-                  placeholder="Comment votre projet résout-il ce problème ?"
-                  rows={3}
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <Textarea
+                    label="Solution proposée"
+                    value={formData.idee.solutionProposee}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        idee: {
+                          ...formData.idee,
+                          solutionProposee: e.target.value,
+                        },
+                      })
+                    }
+                    placeholder="Comment votre projet résout-il ce problème ?"
+                    rows={3}
+                    className="focus:border-[#751F20] focus:ring-[#751F20]/20"
+                  />
+                </motion.div>
 
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    Avantages concurrentiels
+                    Propriétaires du projet
                   </label>
-                  {formData.presentation.avantagesConcurrentiels.map(
-                    (avantage, index) => (
-                      <div key={index} className="flex space-x-2">
+                  {formData.idee.proprietaires.map(
+                    (proprietaire, index) => (
+                      <div key={index} className="space-y-2 p-4 border rounded-lg">
                         <Input
-                          value={avantage}
+                          label="Nom"
+                          value={proprietaire.nom}
                           onChange={(e) => {
-                            const newAvantages = [
-                              ...formData.presentation.avantagesConcurrentiels,
-                            ];
-                            newAvantages[index] = e.target.value;
+                            const newProprietaires = [...formData.idee.proprietaires];
+                            newProprietaires[index].nom = e.target.value;
                             setFormData({
                               ...formData,
-                              presentation: {
-                                ...formData.presentation,
-                                avantagesConcurrentiels: newAvantages,
+                              idee: {
+                                ...formData.idee,
+                                proprietaires: newProprietaires,
                               },
                             });
                           }}
-                          placeholder={`Avantage ${index + 1}`}
+                          placeholder="Nom du propriétaire"
                         />
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => {
-                            const newAvantages =
-                              formData.presentation.avantagesConcurrentiels.filter(
+                        <Input
+                          label="Fonction"
+                          value={proprietaire.fonction}
+                          onChange={(e) => {
+                            const newProprietaires = [...formData.idee.proprietaires];
+                            newProprietaires[index].fonction = e.target.value;
+                            setFormData({
+                              ...formData,
+                              idee: {
+                                ...formData.idee,
+                                proprietaires: newProprietaires,
+                              },
+                            });
+                          }}
+                          placeholder="Fonction dans l'entreprise"
+                        />
+                        <Input
+                          label="Expérience"
+                          value={proprietaire.experience}
+                          onChange={(e) => {
+                            const newProprietaires = [...formData.idee.proprietaires];
+                            newProprietaires[index].experience = e.target.value;
+                            setFormData({
+                              ...formData,
+                              idee: {
+                                ...formData.idee,
+                                proprietaires: newProprietaires,
+                              },
+                            });
+                          }}
+                          placeholder="Expérience pertinente"
+                        />
+                        {formData.idee.proprietaires.length > 1 && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {
+                              const newProprietaires = formData.idee.proprietaires.filter(
                                 (_, i) => i !== index
                               );
-                            setFormData({
-                              ...formData,
-                              presentation: {
-                                ...formData.presentation,
-                                avantagesConcurrentiels: newAvantages,
-                              },
-                            });
-                          }}
-                        >
-                          Supprimer
-                        </Button>
+                              setFormData({
+                                ...formData,
+                                idee: {
+                                  ...formData.idee,
+                                  proprietaires: newProprietaires,
+                                },
+                              });
+                            }}
+                          >
+                            Supprimer
+                          </Button>
+                        )}
                       </div>
                     )
                   )}
@@ -589,17 +689,17 @@ const BusinessPlanPage: React.FC = () => {
                     onClick={() => {
                       setFormData({
                         ...formData,
-                        presentation: {
-                          ...formData.presentation,
-                          avantagesConcurrentiels: [
-                            ...formData.presentation.avantagesConcurrentiels,
-                            "",
+                        idee: {
+                          ...formData.idee,
+                          proprietaires: [
+                            ...formData.idee.proprietaires,
+                            { nom: "", fonction: "", experience: "" },
                           ],
                         },
                       });
                     }}
                   >
-                    + Ajouter un avantage
+                    + Ajouter un propriétaire
                   </Button>
                 </div>
               </div>
@@ -623,14 +723,14 @@ const BusinessPlanPage: React.FC = () => {
 
               <div className="space-y-4">
                 <Input
-                  label="Marché cible"
-                  value={formData.analyseMarche.marcheCible}
+                  label="Produit ou service"
+                  value={formData.marche.produit}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      analyseMarche: {
-                        ...formData.analyseMarche,
-                        marcheCible: e.target.value,
+                      marche: {
+                        ...formData.marche,
+                        produit: e.target.value,
                       },
                     })
                   }
@@ -638,95 +738,96 @@ const BusinessPlanPage: React.FC = () => {
                 />
 
                 <Input
-                  label="Taille du marché (en millions FCFA)"
-                  type="number"
-                  value={formData.analyseMarche.tailleMarche}
+                  label="Prix de vente"
+                  value={formData.marche.prix}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      analyseMarche: {
-                        ...formData.analyseMarche,
-                        tailleMarche: Number(e.target.value),
+                      marche: {
+                        ...formData.marche,
+                        prix: e.target.value,
                       },
                     })
                   }
                   placeholder="Ex: 500"
                 />
 
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Segments de marché
-                  </label>
-                  {formData.analyseMarche.segments.map((segment, index) => (
-                    <div key={index} className="flex space-x-2">
-                      <Input
-                        value={segment}
-                        onChange={(e) => {
-                          const newSegments = [
-                            ...formData.analyseMarche.segments,
-                          ];
-                          newSegments[index] = e.target.value;
-                          setFormData({
-                            ...formData,
-                            analyseMarche: {
-                              ...formData.analyseMarche,
-                              segments: newSegments,
-                            },
-                          });
-                        }}
-                        placeholder={`Segment ${index + 1}`}
-                      />
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => {
-                          const newSegments =
-                            formData.analyseMarche.segments.filter(
-                              (_, i) => i !== index
-                            );
-                          setFormData({
-                            ...formData,
-                            analyseMarche: {
-                              ...formData.analyseMarche,
-                              segments: newSegments,
-                            },
-                          });
-                        }}
-                      >
-                        Supprimer
-                      </Button>
-                    </div>
-                  ))}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setFormData({
-                        ...formData,
-                        analyseMarche: {
-                          ...formData.analyseMarche,
-                          segments: [...formData.analyseMarche.segments, ""],
-                        },
-                      });
-                    }}
-                  >
-                    + Ajouter un segment
-                  </Button>
-                </div>
-
-                <Textarea
-                  label="Comportement d'achat"
-                  value={formData.analyseMarche.comportementAchat}
+                <Input
+                  label="Lieu d'installation (Place)"
+                  value={formData.marche.place}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      analyseMarche: {
-                        ...formData.analyseMarche,
-                        comportementAchat: e.target.value,
+                      marche: {
+                        ...formData.marche,
+                        place: e.target.value,
                       },
                     })
                   }
-                  placeholder="Décrivez le comportement d'achat de vos clients..."
+                  placeholder="Où allez-vous vous installer ?"
+                />
+
+                <Textarea
+                  label="Stratégie de promotion"
+                  value={formData.marche.promotion}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      marche: {
+                        ...formData.marche,
+                        promotion: e.target.value,
+                      },
+                    })
+                  }
+                  placeholder="Comment allez-vous faire votre promotion ?"
+                  rows={3}
+                />
+
+                <Input
+                  label="Nombre de clients par mois (estimation)"
+                  type="number"
+                  value={formData.marche.clients}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      marche: {
+                        ...formData.marche,
+                        clients: Number(e.target.value),
+                      },
+                    })
+                  }
+                  placeholder="Ex: 150"
+                />
+
+                <Textarea
+                  label="Fournitures et approvisionnement"
+                  value={formData.marche.fournitures}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      marche: {
+                        ...formData.marche,
+                        fournitures: e.target.value,
+                      },
+                    })
+                  }
+                  placeholder="Comment allez-vous vous approvisionner en biens et services ?"
+                  rows={3}
+                />
+
+                <Textarea
+                  label="Concurrents"
+                  value={formData.marche.concurrents}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      marche: {
+                        ...formData.marche,
+                        concurrents: e.target.value,
+                      },
+                    })
+                  }
+                  placeholder="Comment allez-vous vous comporter face à la concurrence ?"
                   rows={3}
                 />
               </div>
@@ -750,24 +851,24 @@ const BusinessPlanPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#FBE3DA] via-white to-[#FBE3DA]">
       {/* Header avec progression */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="bg-white/95 backdrop-blur-md shadow-lg border-b border-[#751F20]/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
-                onClick={() => navigate("/dashboard")}
-                className="text-gray-500 hover:text-gray-700"
+                onClick={() => navigate("/")}
+                className="p-2 rounded-lg text-[#751F20] hover:bg-[#751F20]/10 transition-all duration-200"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ArrowLeft className="w-5 h-5" />
               </button>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#751F20] via-[#8B2635] to-[#751F20] bg-clip-text text-transparent">
                   Business Plan - {formData.titre || "Nouveau projet"}
                 </h1>
-                <p className="text-sm text-gray-500">
-                  Page {currentPage} sur 12 • {calculateProgress()}% complété
+                <p className="text-sm text-gray-600">
+                  Étape {currentPage} sur 12 • {calculateProgress()}% complété
                 </p>
               </div>
             </div>
@@ -778,6 +879,7 @@ const BusinessPlanPage: React.FC = () => {
                 size="sm"
                 onClick={() => askAssistant("Aide pour cette page")}
                 disabled={isLoading}
+                className="border-[#751F20]/30 text-[#751F20] hover:bg-[#751F20]/10"
               >
                 <HelpCircle className="w-4 h-4 mr-2" />
                 Assistant IA
@@ -788,6 +890,7 @@ const BusinessPlanPage: React.FC = () => {
                 size="sm"
                 onClick={saveBusinessPlan}
                 disabled={isSaving}
+                className="border-[#751F20]/30 text-[#751F20] hover:bg-[#751F20]/10"
               >
                 {isSaving ? (
                   <LoadingSpinner size="sm" />
@@ -797,7 +900,12 @@ const BusinessPlanPage: React.FC = () => {
                 Sauvegarder
               </Button>
 
-              <Button size="sm" onClick={exportPDF} disabled={isLoading}>
+              <Button 
+                size="sm" 
+                onClick={exportPDF} 
+                disabled={isLoading}
+                className="!bg-gradient-to-r from-[#751F20] to-[#8B2635] hover:from-[#5a1618] hover:to-[#6b1e2a] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
                 {isLoading ? (
                   <LoadingSpinner size="sm" />
                 ) : (
@@ -808,19 +916,6 @@ const BusinessPlanPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Barre de progression */}
-          <div className="mt-4">
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-              <span>Progression globale</span>
-              <span>{calculateProgress()}%</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div
-                className="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${calculateProgress()}%` }}
-              />
-            </div>
-          </div>
         </div>
       </div>
 
@@ -828,37 +923,59 @@ const BusinessPlanPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar avec navigation */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-sm border p-4 sticky top-4">
-              <h3 className="font-semibold text-gray-900 mb-4">Navigation</h3>
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-[#751F20]/10 p-6 sticky top-4">
+              <div className="flex items-center space-x-2 mb-6">
+                <div className="w-2 h-8 bg-gradient-to-b from-[#751F20] to-[#8B2635] rounded-full"></div>
+                <h3 className="font-bold text-gray-900">Navigation</h3>
+              </div>
 
-              <nav className="space-y-2">
-                {PAGES_CONFIG.map((page) => (
-                  <button
-                    key={page.id}
-                    onClick={() => goToPage(page.id)}
-                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
-                      currentPage === page.id
-                        ? "bg-primary-50 text-primary-700 border border-primary-200"
-                        : "text-gray-600 hover:bg-gray-50"
-                    }`}
-                  >
-                    <div className="flex-shrink-0">
-                      {currentPage === page.id ? (
-                        <CheckCircle className="w-5 h-5 text-primary-600" />
-                      ) : (
-                        <Circle className="w-5 h-5" />
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate">
-                        {page.title}
-                      </p>
-                      <p className="text-xs text-gray-500 truncate">
-                        {page.description}
-                      </p>
-                    </div>
-                  </button>
-                ))}
+              <nav className="space-y-3">
+                {PAGES_CONFIG.map((page) => {
+                  const isCompleted = isPageCompleted(page.id);
+                  const isCurrent = currentPage === page.id;
+                  
+                  return (
+                    <motion.button
+                      key={page.id}
+                      onClick={() => goToPage(page.id)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all duration-300 group ${
+                        isCurrent
+                          ? "bg-gradient-to-r from-[#751F20]/10 to-[#8B2635]/10 text-[#751F20] border-2 border-[#751F20]/20 shadow-md"
+                          : "text-gray-600 hover:bg-gray-50 border-2 border-transparent hover:border-[#751F20]/10"
+                      }`}
+                    >
+                      {/* Contenu principal */}
+                      <div className="flex items-center space-x-3">
+                        {/* Icône à gauche */}
+                        <div className={`flex-shrink-0 transition-colors ${
+                          isCurrent ? 'text-[#751F20]' : isCompleted ? 'text-[#751F20]' : 'text-gray-400 group-hover:text-[#751F20]'
+                        }`}>
+                          {page.icon}
+                        </div>
+                        
+                        {/* Contenu */}
+                        <div className="flex-1 min-w-0">
+                          <p className={`text-sm font-semibold truncate transition-colors ${
+                            isCurrent ? 'text-[#751F20]' : 'text-gray-700 group-hover:text-[#751F20]'
+                          }`}>
+                            {page.title}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Validation à droite */}
+                      <div className="flex-shrink-0">
+                        {isCompleted && (
+                          <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#751F20] to-[#8B2635] flex items-center justify-center">
+                            <CheckCircle className="w-4 h-4 text-white" />
+                          </div>
+                        )}
+                      </div>
+                    </motion.button>
+                  );
+                })}
               </nav>
             </div>
           </div>
@@ -868,25 +985,50 @@ const BusinessPlanPage: React.FC = () => {
             <AnimatePresence mode="wait">{renderCurrentPage()}</AnimatePresence>
 
             {/* Navigation entre pages */}
-            <div className="flex items-center justify-between mt-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center justify-between mt-8 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-[#751F20]/10"
+            >
               <Button
                 variant="outline"
                 onClick={prevPage}
                 disabled={currentPage === 1}
+                className="!border-[#751F20]/30 !text-[#751F20] hover:!bg-[#751F20]/10 hover:!border-[#751F20]/50 disabled:opacity-50 disabled:cursor-not-allowed !focus:ring-[#751F20]/20"
               >
-                <ChevronLeft className="w-4 h-4 mr-2" />
+                <ArrowLeft className="w-4 h-4 mr-2" />
                 Précédent
               </Button>
 
-              <div className="text-sm text-gray-500">
-                Page {currentPage} sur 12
+              <div className="flex items-center space-x-4">
+                <div className="text-sm text-gray-600 font-medium">
+                  Étape {currentPage} sur 12
+                </div>
+                <div className="flex space-x-1">
+                  {Array.from({ length: 12 }, (_, i) => (
+                    <div
+                      key={i + 1}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        i + 1 === currentPage
+                          ? 'bg-[#751F20] scale-125'
+                          : i + 1 < currentPage
+                          ? 'bg-[#8B2635]'
+                          : 'bg-gray-300'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
 
-              <Button onClick={nextPage} disabled={currentPage === 12}>
-                Suivant
-                <ChevronRight className="w-4 h-4 ml-2" />
+              <Button 
+                onClick={nextPage} 
+                disabled={currentPage === 12}
+                className="!bg-gradient-to-r from-[#751F20] to-[#8B2635] hover:from-[#5a1618] hover:to-[#6b1e2a] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
+                {currentPage === 12 ? 'Terminer' : 'Suivant'}
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
