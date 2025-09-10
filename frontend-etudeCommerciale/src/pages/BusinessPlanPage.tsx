@@ -8,11 +8,8 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle,
-  Presentation,
 } from "lucide-react";
 import Button from "../components/UI/Button";
-import Input from "../components/UI/Input";
-import Textarea from "../components/UI/Textarea";
 import Modal from "../components/UI/Modal";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import { useAuth } from "../contexts/AuthContext";
@@ -22,10 +19,7 @@ import { toast } from "react-hot-toast";
 import {
   BusinessPlanData,
   MOIS_ANNEE,
-  SECTEURS_ACTIVITE,
-  VILLES_COTE_IVOIRE,
 } from "../components/BusinessPlan/types/BusinessPlanTypes";
-import BusinessPlanNavigation from "../components/BusinessPlan/shared/BusinessPlanNavigation";
 import { BusinessPlanCalculations } from "../components/BusinessPlan/shared/CalculationUtils";
 import Page1IdeeForm from "../components/BusinessPlan/forms/Page1IdeeForm";
 import Page2MarcheForm from "../components/BusinessPlan/forms/Page2MarcheForm";
@@ -51,9 +45,6 @@ const BusinessPlanPage: React.FC = () => {
   const [showAssistant, setShowAssistant] = useState(false);
   const [assistantMessage, setAssistantMessage] = useState("");
   const [completedPages, setCompletedPages] = useState<number[]>([]);
-  const [pageValidations, setPageValidations] = useState<
-    Record<number, boolean>
-  >({});
 
   // État du formulaire - Structure CCI optimisée
   const [formData, setFormData] = useState<BusinessPlanData>({
@@ -228,8 +219,8 @@ const BusinessPlanPage: React.FC = () => {
   }, []);
 
   // Gestionnaire de validation des pages
-  const handlePageValidation = useCallback((pageNumber: number, isValid: boolean) => {
-    setPageValidations(prev => ({ ...prev, [pageNumber]: isValid }));
+  const handlePageValidation = useCallback((_pageNumber: number, _isValid: boolean) => {
+    // Validation handling logic can be added here if needed
   }, []);
 
   // Navigation entre pages

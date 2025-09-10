@@ -68,7 +68,7 @@ const Page8CompteResultatForm: React.FC<Page8CompteResultatFormProps> = ({
     
     setLocalData(updatedData);
     onUpdate({ compteResultat: updatedData });
-  }, [localData.mois, onUpdate]);
+  }, [localData.mois]);
 
   // Validation en temps réel
   useEffect(() => {
@@ -87,7 +87,7 @@ const Page8CompteResultatForm: React.FC<Page8CompteResultatFormProps> = ({
     );
 
     onValidate(isValid);
-  }, [localData, onValidate]);
+  }, [localData]);
 
   // Mise à jour d'une valeur pour un mois donné
   const updateMoisValue = (moisIndex: number, section: string, field: string, value: number) => {
@@ -115,7 +115,7 @@ const Page8CompteResultatForm: React.FC<Page8CompteResultatFormProps> = ({
   const copyToAllMonths = (moisSource: number) => {
     const sourceData = localData.mois[moisSource];
     const updatedMois = localData.mois.map((_: any, index: number) => 
-      index === 0 ? sourceData : { ...sourceData, mois: index + 1 }
+      index === 0 ? sourceData : { ...sourceData, mois: moisNoms[index] }
     );
     
     const updatedData = { ...localData, mois: updatedMois };
